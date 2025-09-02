@@ -9,6 +9,10 @@ app.listen(PORT, () => {
     console.log("App is running")
 })
 
-app.get("/api/v1", (req, res)=>{
+app.get("/api/v1", (req, res) => {
     res.send("Welcome to SQI Flash card API version 1")
+})
+
+app.get("/api/v1/test", (req, res) => {
+    res.send("Welcome to SQI Flash card api test")
 })
