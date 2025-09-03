@@ -1,4 +1,4 @@
-const errorHandler = (err, req, res) => {
+const errorHandler = (err, req, res, next) => {
     if (err.code === 11000) {
         return res.send("Duplicate error")
     } else {
