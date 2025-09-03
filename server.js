@@ -1,10 +1,18 @@
 import express from "express"
 import dotenv from "dotenv"
+import connectToDb from "./config/connectToDb.js"
+connectToDb()
 dotenv.config()
+
+
+// ROUTERS
+import authRouter from "./routers/authRouter.js"
+import errorHandler from "./middlewares/errorHandler.js"
 
 const app = express()
 const PORT = process.env.PORT || 4005
 
+app.use(express.json())
 app.listen(PORT, () => {
     console.log("App is running")
 })
@@ -13,6 +21,8 @@ app.get("/api/v1", (req, res) => {
     res.send("Welcome to SQI Flash card API version 1")
 })
 
-app.get("/api/v1/test", (req, res) => {
-    res.send("Welcome to SQI Flash card api test")
-})
+app.use("/api/v1/auth", authRouter)
+
+app.use("/{*any}", errorHandler)
+
+// /api/v1/auth
