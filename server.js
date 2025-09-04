@@ -9,6 +9,7 @@ dotenv.config()
 
 // ROUTERS
 import authRouter from "./routers/authRouter.js"
+import deckRouter from "./routers/deckRouter.js"
 import errorHandler from "./middlewares/errorHandler.js"
 
 const app = express()
@@ -26,6 +27,7 @@ app.get("/api/v1", (req, res) => {
 })
 
 app.use("/api/v1/auth", authRouter)
+app.use("/api/v1/decks", deckRouter)
 
 app.use("/{*any}", errorHandler)
 
