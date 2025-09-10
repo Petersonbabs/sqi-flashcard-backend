@@ -35,7 +35,7 @@ export const signup = async (req, res, next) => {
 export const login = async (req, res, next) => {
     const { email, password } = req.body
     try {
-        const user = await userModel.findOne({ email })
+        const user = await userModel.findOne({ email }).select("+password")
         if (!user) {
             return res.status(404).json({
                 status: "error",
